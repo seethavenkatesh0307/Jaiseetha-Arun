@@ -9,44 +9,81 @@
     body {
         margin: 0;
         font-family: 'Segoe UI', sans-serif;
-        background: linear-gradient(to bottom right, #fbeee6, #f7d9c4);
-        text-align: center;
-        color: #5a3e36;
+        background: linear-gradient(135deg, #f8e1e7, #f3d5c0);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        color: #4a2c2a;
     }
 
     .card {
-        max-width: 600px;
-        margin: 50px auto;
-        background: #fff;
-        padding: 30px;
+        width: 90%;
+        max-width: 650px;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
         border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        padding: 40px 25px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        text-align: center;
+        animation: fadeIn 1.5s ease-in-out;
     }
 
     h1 {
-        font-size: 32px;
+        font-size: 34px;
         margin-bottom: 10px;
     }
 
+    .subtitle {
+        font-size: 16px;
+        margin-bottom: 25px;
+        opacity: 0.8;
+    }
+
     .names {
-        font-size: 28px;
+        font-size: 30px;
         font-weight: bold;
-        margin: 20px 0;
         color: #b76e79;
+        margin: 20px 0;
+        line-height: 1.5;
     }
 
     .section {
         margin: 20px 0;
-        font-size: 18px;
+        font-size: 17px;
     }
 
-    .highlight {
+    .label {
         font-weight: bold;
+        color: #8b4a4a;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .divider {
+        width: 60px;
+        height: 2px;
+        background: #b76e79;
+        margin: 20px auto;
+        border-radius: 2px;
     }
 
     .footer {
-        margin-top: 30px;
+        margin-top: 25px;
         font-style: italic;
+        font-size: 15px;
+        opacity: 0.8;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 </style>
 </head>
@@ -54,35 +91,42 @@
 <body>
 
 <div class="card">
-    <h1>💖 Wedding Invitation 💖</h1>
 
-    <p>With love and joy, we invite you to celebrate the wedding of</p>
+    <h1>💖 Wedding Invitation 💖</h1>
+    <div class="subtitle">We joyfully invite you to celebrate our special day</div>
+
+    <div class="divider"></div>
 
     <div class="names">
-        Arun <br> & <br> Jaiseetha
+        Arun<br>
+        <span style="font-size:18px; font-weight:normal;">&</span><br>
+        Jaiseetha
     </div>
 
+    <div class="divider"></div>
+
     <div class="section">
-        <span class="highlight">Wedding</span><br>
+        <span class="label">Wedding</span>
         June 25th, Thursday<br>
         7:30 AM – 9:00 AM
     </div>
 
     <div class="section">
-        <span class="highlight">Reception</span><br>
+        <span class="label">Reception</span>
         June 24th, Wednesday<br>
         7:00 PM onwards
     </div>
 
     <div class="section">
-        <span class="highlight">Venue</span><br>
+        <span class="label">Venue</span>
         12/6, Chokkapanai Ln,<br>
         Thirubuvanam, Tamil Nadu
     </div>
 
     <div class="footer">
-        We look forward to celebrating with you ❤️
+        With love, we look forward to your presence ❤️
     </div>
+
 </div>
 
 </body>
