@@ -3,131 +3,335 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wedding Invitation</title>
+<title>Wedding Invitation – Arun & Jaiseetha</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-        margin: 0;
-        font-family: 'Segoe UI', sans-serif;
-        background: linear-gradient(135deg, #f8e1e7, #f3d5c0);
+        min-height: 100vh;
+        font-family: 'Montserrat', sans-serif;
+        background: #1a0a00;
         display: flex;
         align-items: center;
         justify-content: center;
-        min-height: 100vh;
-        color: #4a2c2a;
+        padding: 40px 16px;
+        position: relative;
+        overflow-x: hidden;
+    }
+
+    /* Animated petal particles */
+    .petal {
+        position: fixed;
+        top: -40px;
+        font-size: 22px;
+        animation: fall linear infinite;
+        pointer-events: none;
+        opacity: 0.7;
+        z-index: 0;
+    }
+    @keyframes fall {
+        0%   { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+        100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* Outer glow wrapper */
+    .wrapper {
+        position: relative;
+        z-index: 1;
+        max-width: 640px;
+        width: 100%;
     }
 
     .card {
-        width: 90%;
-        max-width: 650px;
-        background: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(10px);
-        border-radius: 20px;
-        padding: 40px 25px;
-        box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-        text-align: center;
-        animation: fadeIn 1.5s ease-in-out;
+        background: linear-gradient(160deg, #fff9f2 0%, #fff3e8 60%, #fde8d8 100%);
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow:
+            0 0 0 4px #c89060,
+            0 0 0 8px #f5d6a8,
+            0 0 0 12px #c89060,
+            0 0 60px rgba(200, 100, 50, 0.4),
+            0 20px 60px rgba(0,0,0,0.5);
+        animation: fadeUp 1.2s ease both;
+    }
+    @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(40px); }
+        to   { opacity: 1; transform: translateY(0); }
     }
 
-    h1 {
-        font-size: 34px;
+    /* Top decorative banner */
+    .banner {
+        background: linear-gradient(135deg, #8b1a2b 0%, #c0392b 40%, #922b21 70%, #6e1a10 100%);
+        padding: 28px 20px 20px;
+        position: relative;
+    }
+    .banner::after {
+        content: '';
+        display: block;
+        height: 6px;
+        background: linear-gradient(to right, #f0c060, #fde8a0, #c89040, #fde8a0, #f0c060);
+        position: absolute;
+        bottom: 0; left: 0; right: 0;
+    }
+
+    .banner-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+        color: #f5d6a0;
         margin-bottom: 10px;
     }
 
-    .subtitle {
-        font-size: 16px;
-        margin-bottom: 25px;
-        opacity: 0.8;
+    .banner h1 {
+        font-family: 'Great Vibes', cursive;
+        font-size: 56px;
+        color: #fff8ee;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.3), 0 0 30px rgba(255,220,150,0.4);
+        line-height: 1.1;
     }
 
-    .names {
-        font-size: 30px;
-        font-weight: bold;
-        color: #b76e79;
-        margin: 20px 0;
-        line-height: 1.5;
+    .floral-row {
+        font-size: 22px;
+        margin: 8px 0 0;
+        letter-spacing: 6px;
+        color: #f5d6a0;
+        opacity: 0.9;
     }
 
-    .section {
-        margin: 20px 0;
-        font-size: 17px;
+    /* Body */
+    .body {
+        padding: 32px 36px 28px;
     }
 
-    .label {
-        font-weight: bold;
-        color: #8b4a4a;
-        display: block;
-        margin-bottom: 5px;
-    }
-
-    .divider {
-        width: 60px;
-        height: 2px;
-        background: #b76e79;
-        margin: 20px auto;
-        border-radius: 2px;
-    }
-
-    .footer {
-        margin-top: 25px;
+    .tagline {
+        font-family: 'Cormorant Garamond', serif;
         font-style: italic;
-        font-size: 15px;
-        opacity: 0.8;
+        font-size: 16px;
+        color: #8b5e3c;
+        letter-spacing: 0.5px;
+        margin-bottom: 28px;
     }
 
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    /* Names */
+    .names-block {
+        margin: 0 auto 28px;
+        position: relative;
+    }
+    .names-block::before,
+    .names-block::after {
+        content: '';
+        display: block;
+        height: 1px;
+        background: linear-gradient(to right, transparent, #c89060, transparent);
+        margin: 12px 0;
+    }
+    .name {
+        font-family: 'Great Vibes', cursive;
+        font-size: 52px;
+        color: #8b1a2b;
+        line-height: 1.15;
+        text-shadow: 1px 1px 0 rgba(200,144,96,0.3);
+    }
+    .ampersand {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 22px;
+        font-style: italic;
+        color: #c89060;
+        display: block;
+        margin: 2px 0;
+        letter-spacing: 4px;
+    }
+
+    /* Divider */
+    .divider {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 24px 0;
+        color: #c89060;
+        font-size: 16px;
+    }
+    .divider::before, .divider::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(to right, transparent, #c89060);
+    }
+    .divider::after {
+        background: linear-gradient(to left, transparent, #c89060);
+    }
+
+    /* Info sections */
+    .info-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-bottom: 20px;
+    }
+
+    .info-card {
+        background: linear-gradient(135deg, #fff5ec, #fde8d4);
+        border: 1px solid #e8c49a;
+        border-radius: 14px;
+        padding: 18px 14px;
+        transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .info-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(180, 90, 40, 0.2);
+    }
+    .info-card:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+        max-width: 280px;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .info-icon {
+        font-size: 26px;
+        margin-bottom: 8px;
+        display: block;
+    }
+    .info-label {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 9px;
+        font-weight: 600;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: #c89060;
+        margin-bottom: 6px;
+    }
+    .info-title {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 20px;
+        font-weight: 600;
+        color: #6e1a10;
+        margin-bottom: 4px;
+    }
+    .info-detail {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 12px;
+        font-weight: 300;
+        color: #7a4a30;
+        line-height: 1.7;
+    }
+
+    /* Venue full width */
+    .venue-card {
+        background: linear-gradient(135deg, #6e1a10, #922b21);
+        border: none;
+        color: #fff;
+        grid-column: 1 / -1;
+        max-width: 100% !important;
+    }
+    .venue-card .info-label  { color: #f5d6a0; }
+    .venue-card .info-title  { color: #fff; font-size: 22px; }
+    .venue-card .info-detail { color: #fde8d0; }
+
+    /* Footer */
+    .footer {
+        background: linear-gradient(135deg, #8b1a2b 0%, #c0392b 60%, #6e1a10 100%);
+        padding: 22px 20px;
+        position: relative;
+    }
+    .footer::before {
+        content: '';
+        display: block;
+        height: 6px;
+        background: linear-gradient(to right, #f0c060, #fde8a0, #c89040, #fde8a0, #f0c060);
+        position: absolute;
+        top: 0; left: 0; right: 0;
+    }
+    .footer-text {
+        font-family: 'Cormorant Garamond', serif;
+        font-style: italic;
+        font-size: 17px;
+        color: #fde8d0;
+        letter-spacing: 0.5px;
+        padding-top: 6px;
+    }
+    .footer-hearts {
+        font-size: 20px;
+        margin-top: 8px;
+        letter-spacing: 6px;
     }
 </style>
 </head>
 
 <body>
 
-<div class="card">
+<!-- Falling petals -->
+<div class="petal" style="left:5%;  animation-duration:7s;  animation-delay:0s;">🌸</div>
+<div class="petal" style="left:15%; animation-duration:9s;  animation-delay:1s;">🌹</div>
+<div class="petal" style="left:28%; animation-duration:6s;  animation-delay:3s;">🌺</div>
+<div class="petal" style="left:42%; animation-duration:11s; animation-delay:0.5s;">🌸</div>
+<div class="petal" style="left:58%; animation-duration:8s;  animation-delay:2s;">🌷</div>
+<div class="petal" style="left:70%; animation-duration:10s; animation-delay:1.5s;">🌹</div>
+<div class="petal" style="left:83%; animation-duration:7s;  animation-delay:4s;">🌸</div>
+<div class="petal" style="left:92%; animation-duration:9s;  animation-delay:0.8s;">🌺</div>
 
-    <h1>💖 Wedding Invitation 💖</h1>
-    <div class="subtitle">We joyfully invite you to celebrate our special day</div>
+<div class="wrapper">
+  <div class="card">
 
-    <div class="divider"></div>
-
-    <div class="names">
-        Arun<br>
-        <span style="font-size:18px; font-weight:normal;">&</span><br>
-        Jaiseetha
+    <!-- Banner -->
+    <div class="banner">
+      <div class="banner-title">✦ &nbsp; Joyful Union &nbsp; ✦</div>
+      <h1>Wedding Invitation</h1>
+      <div class="floral-row">❦ &nbsp; ❦ &nbsp; ❦</div>
     </div>
 
-    <div class="divider"></div>
+    <!-- Body -->
+    <div class="body">
 
-    <div class="section">
-        <span class="label">Wedding</span>
-        June 25th, Thursday<br>
-        7:30 AM – 9:00 AM
-    </div>
+      <p class="tagline">With hearts full of love and joy, we warmly invite you to celebrate the union of</p>
 
-    <div class="section">
-        <span class="label">Reception</span>
-        June 24th, Wednesday<br>
-        7:00 PM onwards
-    </div>
+      <div class="names-block">
+        <div class="name">Arun</div>
+        <span class="ampersand">&amp;</span>
+        <div class="name">Jaiseetha</div>
+      </div>
 
-    <div class="section">
-        <span class="label">Venue</span>
-        12/6, Chokkapanai Ln,<br>
-        Thirubuvanam, Tamil Nadu
-    </div>
+      <div class="divider">✦</div>
 
+      <div class="info-grid">
+
+        <div class="info-card">
+          <span class="info-icon">🪔</span>
+          <div class="info-label">Wedding Ceremony</div>
+          <div class="info-title">June 25th</div>
+          <div class="info-detail">Thursday<br>7:30 AM – 9:00 AM</div>
+        </div>
+
+        <div class="info-card">
+          <span class="info-icon">🥂</span>
+          <div class="info-label">Reception</div>
+          <div class="info-title">June 24th</div>
+          <div class="info-detail">Wednesday<br>7:00 PM onwards</div>
+        </div>
+
+        <div class="info-card venue-card">
+          <span class="info-icon">📍</span>
+          <div class="info-label">Venue</div>
+          <div class="info-title">12/6, Chokkapanai Ln</div>
+          <div class="info-detail">Thirubuvanam, Tamil Nadu</div>
+        </div>
+
+      </div>
+
+    </div><!-- /body -->
+
+    <!-- Footer -->
     <div class="footer">
-        With love, we look forward to your presence ❤️
+      <p class="footer-text">We look forward to celebrating this beautiful moment with you</p>
+      <div class="footer-hearts">💕 &nbsp; 💍 &nbsp; 💕</div>
     </div>
 
-</div>
+  </div><!-- /card -->
+</div><!-- /wrapper -->
 
 </body>
 </html>
